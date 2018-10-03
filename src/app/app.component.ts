@@ -1,10 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { RecentlyVisitedService } from './services/recently-visited.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'mob-website-client';
+
+export class AppComponent implements OnInit {
+  pages: Array<any> = [];
+
+  constructor(private recentlyVisitedService: RecentlyVisitedService) {}
+
+  ngOnInit() {
+    this.pages = this.recentlyVisitedService.get();
+  }
 }

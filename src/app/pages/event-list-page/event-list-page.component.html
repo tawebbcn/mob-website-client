@@ -1,0 +1,17 @@
+<h1>List Events</h1>
+
+<app-loading *ngIf="!isLoaded"></app-loading>
+
+
+<ul *ngIf="isLoaded">
+  <li [ngStyle]="{ 'background-color': event.color }" *ngFor="let event of events, let ix = index" [routerLink]="['/events/', event._id]" class="card">
+    <h2>{{event.type | uppercase}} - {{event.name | uppercase}}</h2>
+    <p>{{event.date | amTimeAgo}}</p>
+    {{event.color}}
+    <button (click)="handleDeleteClick(ix)">Delete me!</button>
+  </li>
+</ul>
+
+<button (click)="handleAddClick()">Click me!</button>
+
+<a href="/events/5ba4fafd3af00cdb2ab83867">Hard Link</a>
